@@ -13,7 +13,7 @@ router.post('/signup', catchAsync(createUserController));
 
 router.post('/login', catchAsync(loginUserController));
 
-router.get('/check', checkAuth, catchAsync(checkAuthController));
+router.get('/check', catchAsync(checkAuthController));
 
 router.get('/logout', checkAuth, catchAsync(logoutController));
 

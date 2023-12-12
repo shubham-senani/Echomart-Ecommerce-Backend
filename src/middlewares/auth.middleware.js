@@ -18,10 +18,8 @@ function getCookieValue(cookieString, cookieName) {
 //================ Authorisation =========================
 export const checkAuth = catchAsync(async (req, res, next) => {
     // Extract the token from the headers
-    let token = '';
-    if (!req.headers.cookie) {
-        token = getCookieValue(req.headers.cookie, 'token');
-    }
+    let token = getCookieValue(req.headers.cookie, 'token');
+
     if (!token) {
         return next(new ApiError("Authorization failed", 401))
     }
