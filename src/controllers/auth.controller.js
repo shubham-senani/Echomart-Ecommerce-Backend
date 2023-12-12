@@ -47,8 +47,8 @@ export const loginUserController = async (req, res) => {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIR_IN * 24 * 60 * 60 * 1000
     ),
-    httpOnly: false,
-    secure: false,
+    httpOnly: true,
+    secure: true,
   }
   res.cookie("token", token, cookieOptions);
 
