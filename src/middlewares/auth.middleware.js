@@ -3,23 +3,13 @@ import ApiError from "../utils/ApiError.js";
 import catchAsync from "../utils/catchAsync.js";
 import userModel from "../models/user.model.js";
 
-// Function to extract the value of a cookie by name
-function getCookieValue(cookieString, cookieName) {
-    const cookies = cookieString.split('; ');
-    for (const cookie of cookies) {
-        const [name, value] = cookie.split('=');
-        if (name === cookieName) {
-            return value;
-        }
-    }
-    return null;
-}
-
 //================ Authorisation =========================
 export const checkAuth = catchAsync(async (req, res, next) => {
-    // Extract the token from the headers
-    let token = getCookieValue(req.headers.cookie, 'token');
-
+    const authHeader = req.headers.authorization
+    if (!authHeader || !authHeader.startsWith('Bearer')) {
+        return next(new ApiError("Authorization failed", 401))
+    }
+    const token = authHeader.split(' ')[1]
     if (!token) {
         return next(new ApiError("Authorization failed", 401))
     }

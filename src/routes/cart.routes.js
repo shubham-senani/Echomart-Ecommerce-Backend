@@ -5,8 +5,8 @@ const router = express.Router();
 import { checkAuth } from '../middlewares/auth.middleware.js';
 
 router.post('/', checkAuth, catchAsync(addToCart))
-      .get('/', checkAuth, catchAsync(fetchCartByUser))
-      .delete('/:id', catchAsync(deleteFromCart))
-      .patch('/:id', catchAsync(updateCart))
+      .get('/', checkAuth,  catchAsync(fetchCartByUser))
+      .delete('/:id', checkAuth, catchAsync(deleteFromCart))
+      .patch('/:id', checkAuth, catchAsync(updateCart))
 
 export default router;

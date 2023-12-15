@@ -25,8 +25,7 @@ console.log(process.env.NODE_ENV + " mode")
 
 //=========================== middlewares
 app.use(cors({
-    credentials: true,
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:5173',
 }));
 app.use(helmet());
 app.use(xssAdvanced());
@@ -49,6 +48,7 @@ import errorMiddleware from "./middlewares/error.middleware.js";
 import ApiError from "./utils/ApiError.js";
 
 //========================= routes declaration
+
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/products", productRouter);
@@ -94,6 +94,13 @@ app.use("/api/v1/orders", orderRouter);
 //     response.send();
 //   }
 // );
+app.get("/", (req, res) => {
+    res.send("Hello from server");
+});
+
+app.get("/favicon.ico", (req, res) => {
+    res.send("Hello from server");
+})
 
 //========================== Create PaymentIntent
 app.post("/api/v1/create-payment-intent", async (req, res) => {

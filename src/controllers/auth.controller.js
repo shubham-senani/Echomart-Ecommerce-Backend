@@ -71,9 +71,10 @@ export const checkAuthController = async (req, res) => {
   if (req.user) {
     res.json(req.user);
   } else {
-    res.sendStatus(401);
+    res.json({});
   }
 };
+
 
 //=============================== reset pass request ================================
 export const resetPasswordRequestController = async (req, res) => {

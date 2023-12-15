@@ -5,15 +5,11 @@ import { createUserController, loginUserController, checkAuthController, logoutC
 
 const router = express.Router();
 
-const helo = (req, res) => {
-    res.send("hello skip");
-}
-
 router.post('/signup', catchAsync(createUserController));
 
 router.post('/login', catchAsync(loginUserController));
 
-router.get('/check', catchAsync(checkAuthController));
+router.get('/check', checkAuth, catchAsync(checkAuthController));
 
 router.get('/logout', checkAuth, catchAsync(logoutController));
 
