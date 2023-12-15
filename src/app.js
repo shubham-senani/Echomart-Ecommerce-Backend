@@ -25,7 +25,7 @@ console.log(process.env.NODE_ENV + " mode")
 
 //=========================== middlewares
 app.use(cors({
-    origin: 'https://657c880b1ade910b0846dd7d--chic-pie-6e2053.netlify.app/',
+    origin: 'https://657c880b1ade910b0846dd7d--chic-pie-6e2053.netlify.app',
 }));
 app.use(helmet());
 app.use(xssAdvanced());
